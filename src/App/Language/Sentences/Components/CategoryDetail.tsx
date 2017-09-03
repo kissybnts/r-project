@@ -1,16 +1,16 @@
 import * as React from 'react';
-import { LanguageState } from '../Modules';
 import { SentenceList } from './SentenceList';
-import { AddSentence } from './AddSentence';
+import { ReduxAction } from '../../../../Redux/ConfigureStores';
 import { Dispatch } from 'redux';
-import { ReduxAction } from '../../../Redux/ConfigureStores';
+import { CategoryDetailState } from '../Modules';
+import { AddSentence } from './AddSentence';
 
 interface Props {
-  value: LanguageState;
+  value: CategoryDetailState;
   dispatch: Dispatch<ReduxAction>;
 }
 
-export class Category extends React.Component<Props, {}> {
+export class CategoryDetail extends React.Component<Props, {}> {
   render() {
     return (
       <div>

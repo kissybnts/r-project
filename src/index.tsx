@@ -4,11 +4,11 @@ import registerServiceWorker from './registerServiceWorker';
 import './index.css';
 import { Provider } from 'react-redux';
 import store from './Redux/ConfigureStores';
-import Category from './App/Language/Container';
+import Sentences from './App/Language/Sentences/Container';
 
 ReactDOM.render(
   <Provider store={store}>
-    <Category />
+    <Sentences />
   </Provider>,
   document.getElementById('root') as HTMLElement
 );

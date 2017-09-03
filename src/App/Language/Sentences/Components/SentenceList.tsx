@@ -1,6 +1,6 @@
 import * as React from 'react';
-import { SentenceState } from '../Modules';
 import { Sentence } from './Sentence';
+import { SentenceState } from '../Modules';
 
 interface Props {
   value: SentenceState[];
@@ -11,7 +11,7 @@ export class SentenceList extends React.Component<Props, {}> {
     return (
       <div>
         {this.props.value.map((sentence) => (
-          <Sentence value={sentence}/>
+          <Sentence key={sentence.id} value={sentence}/>
         ))}
       </div>
     );

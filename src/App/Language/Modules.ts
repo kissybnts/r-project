@@ -8,11 +8,11 @@ export interface SentenceState extends UserRelationEntityState {
   translation: string;
 }
 
-export interface CategoryState extends UserRelationEntityState {
+export interface LanguageState extends UserRelationEntityState {
   name: string;
   sentences: SentenceState[];
 }
-const initialState: CategoryState = {
+const initialState: LanguageState = {
   id: -1,
   userId: -1,
   name: 'initial name',
@@ -22,7 +22,7 @@ const initialState: CategoryState = {
 };
 
 // Reducer
-export default function reducer(state: CategoryState = initialState, action: Action): CategoryState {
+export default function reducer(state: LanguageState = initialState, action: Action): LanguageState {
   if (isCategoryUpdate(action)) {
     return { ...state, name: action.name, sentences: state.sentences };
   } else if (isSentenceCreate(action)) {

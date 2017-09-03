@@ -1,12 +1,12 @@
 import * as React from 'react';
-import { CategoryState } from '../Modules';
+import { LanguageState } from '../Modules';
 import { SentenceList } from './SentenceList';
 import { AddSentence } from './AddSentence';
 import { Dispatch } from 'redux';
 import { ReduxAction } from '../../../Redux/ConfigureStores';
 
 interface Props {
-  value: CategoryState;
+  value: LanguageState;
   dispatch: Dispatch<ReduxAction>;
 }
 

@@ -1,6 +1,6 @@
 import { Action, combineReducers, createStore } from 'redux';
 import { LanguageActions } from '../App/Language/Actions';
-import languageReducer, { CategoryState } from '../App/Language/Modules';
+import languageReducer, { LanguageState } from '../App/Language/Modules';
 
 export default createStore(
   combineReducers({
@@ -9,7 +9,7 @@ export default createStore(
 );
 
 export type ReduxState = {
-  category: CategoryState
+  category: LanguageState
 };
 
 export type ReduxAction = LanguageActions | Action;

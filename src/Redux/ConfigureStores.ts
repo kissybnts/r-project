@@ -1,18 +1,20 @@
 import { Action, combineReducers, createStore } from 'redux';
-import sentencesReducer, { SentencesState } from '../App/Language/Sentences/Modules';
-import categoriesReducer, { CategoriesState } from '../App/Language/Categories/Modules';
-import { SentencesActions } from '../App/Language/Sentences/Actions';
+import categoriesReducer from '../App/Language/Categories/Modules';
+import sentencesReducer from '../App/Language/Sentences/Modules';
+import { LanguageState } from '../App/Language/Modules';
+import { LanguageActions } from '../App/Language/Modules';
 
 export default createStore(
   combineReducers({
-    sentences: sentencesReducer,
-    categories: categoriesReducer
+    language: combineReducers({
+      categories: categoriesReducer,
+      sentences: sentencesReducer
+    })
   })
 );
 
 export type ReduxState = {
-  sentences: SentencesState,
-  categories: CategoriesState
+  language: LanguageState
 };
 
-export type ReduxAction = SentencesActions | Action;
+export type ReduxAction = LanguageActions | Action;

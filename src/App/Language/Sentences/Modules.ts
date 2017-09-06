@@ -20,7 +20,7 @@ export interface SentencesState {
   category: CategoryDetailState;
 }
 
-const initialState: SentencesState = {
+export const initialSentencesState: SentencesState = {
   category: {
     id: -1,
     userId: -1,
@@ -30,7 +30,7 @@ const initialState: SentencesState = {
 };
 
 // Reducer
-export default function reducer(state: SentencesState = initialState, action: Action): SentencesState {
+export default function reducer(state: SentencesState = initialSentencesState, action: Action): SentencesState {
   if (isCategoryUpdate(action)) {
     return { category: { ...state.category, name: action.name, sentences: state.category.sentences }};
   } else if (isSentenceCreate(action)) {

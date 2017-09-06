@@ -9,11 +9,12 @@ export interface CategoryState extends UserRelationEntityState {
 export interface CategoriesState {
   categories: CategoryState[];
 }
-const initialState: CategoriesState = {
+
+export const initialCategoriesState: CategoriesState = {
   categories: []
 };
 
 // Reducer
-export default function reducer(state: CategoriesState = initialState, action: Action): CategoriesState {
+export default function reducer(state: CategoriesState = initialCategoriesState, action: Action): CategoriesState {
   return state;
 }

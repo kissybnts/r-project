@@ -2,6 +2,7 @@ import * as React from 'react';
 import { getSentenceCreateAction } from '../ActionCreators';
 import { ReduxAction } from '../../../../Redux/ConfigureStores';
 import { Dispatch } from 'redux';
+import { sentencesApi } from '../../../../API/SentencesAPI';
 
 interface Props {
   dispatch: Dispatch<ReduxAction>;
@@ -17,6 +18,7 @@ export class AddSentence extends React.Component<Props, {}> {
 
   createSentence() {
     this.props.dispatch(AddSentenceActionCreators.create(this.original.value, this.translation.value));
+    sentencesApi.createSentence(1, 1, this.original.value, this.translation.value);
     this.original.value = '';
     this.translation.value = '';
   }

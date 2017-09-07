@@ -1,9 +1,9 @@
 import { Action } from 'redux';
-import { UserRelationEntityState } from '../../Constant/CommonState';
+import { EntityState, UserRelationEntityState } from '../../Constant/CommonState';
 import { isCategoryUpdate, isSentenceCreate, isSentenceDelete, isSentenceUpdate } from './Actions';
 
 // State
-export interface SentenceState extends UserRelationEntityState {
+export interface SentenceState extends EntityState {
   original: string;
   translation: string;
 }
@@ -35,7 +35,7 @@ export default function reducer(state: SentencesState = initialSentencesState, a
     return { category: { ...state.category, name: action.name, sentences: state.category.sentences }};
   } else if (isSentenceCreate(action)) {
     let sentenceId = state.category.sentences.length + 1;
-    let sentence: SentenceState = { id: sentenceId, userId: state.category.userId, original: action.original, translation: action.translation };
+    let sentence: SentenceState = { id: sentenceId, original: action.original, translation: action.translation };
     let sentences = state.category.sentences.concat(sentence);
     return { category: { ...state.category, sentences: sentences }};
   } else if (isSentenceUpdate(action)) {

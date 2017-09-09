@@ -1,5 +1,5 @@
 import { AxiosError } from 'axios';
-import { ErrorResponse } from './Constant';
+import { ErrorResponse } from './Common';
 
 export const errorHandler = (error: AxiosError): ErrorResponse => {
   if (error.response) {

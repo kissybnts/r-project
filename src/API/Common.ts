@@ -1,3 +1,5 @@
+import { AxiosResponse } from 'axios';
+
 const BASE_URL = 'http://localhost:8080/v1';
 
 export namespace APIConstant {
@@ -8,6 +10,11 @@ export namespace APIConstant {
     CATEGORIES: `${BASE_URL}/categories`,
     SENTENCES: `${BASE_URL}/sentences`
   };
+}
+
+export interface APIResponses {
+  response: AxiosResponse;
+  error: ErrorResponse | null;
 }
 
 export interface ErrorResponse {

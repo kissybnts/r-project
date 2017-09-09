@@ -1,8 +1,8 @@
 import * as React from 'react';
-import { SentencesState } from '../Modules';
+import { SentencesState } from './Modules';
 import { Dispatch } from 'redux';
-import { ReduxAction } from '../../../../Redux/ConfigureStores';
-import { CategoryDetail } from './CategoryDetail';
+import { ReduxAction } from '../../../Redux/ConfigureStores';
+import { CategoryDetail } from './Components/CategoryDetail';
 
 interface Props {
   state: SentencesState;

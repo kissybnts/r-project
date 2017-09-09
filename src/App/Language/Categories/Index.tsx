@@ -1,8 +1,8 @@
 import * as React from 'react';
-import { CategoriesState } from '../Modules';
+import { CategoriesState } from './Modules';
 import { Dispatch } from 'redux';
-import { ReduxAction } from '../../../../Redux/ConfigureStores';
-import { CategoryList } from './CategoryList';
+import { ReduxAction } from '../../../Redux/ConfigureStores';
+import { CategoryList } from './Components/CategoryList';
 
 interface Props {
   state: CategoriesState;

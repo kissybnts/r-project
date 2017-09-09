@@ -1,6 +1,9 @@
 import { Action } from 'redux';
 
 export enum ActionType {
+  CATEGORY_FETCH = 'category/fetch',
+  CATEGORY_FETCH_SUCCESS = 'category/fetch/success',
+  CATEGORY_FETCH_FAILURE = 'category/fetch/failure',
   CATEGORY_UPDATE = 'category/update',
   SENTENCE_CREATE = 'sentence/create',
   SENTENCE_UPDATE = 'sentence/update',
@@ -12,6 +15,18 @@ export enum ActionType {
 interface SentencesAction extends Action {
   type: ActionType;
 }
+
+export interface CategoryFetchAction extends SentencesAction {
+  id: number;
+}
+export const isCategoryFetch = (action: Action): action is CategoryFetchAction => action.type === ActionType.CATEGORY_FETCH;
+
+export interface CategoryFetchSuccessAction extends SentencesAction {
+  category: { id: number, name: string };
+  sentences: { id: number, original: string, translation: string }[];
+}
+export const isCategoryFetchSuccess = (action: Action): action is CategoryFetchSuccessAction => action.type === ActionType.CATEGORY_FETCH_SUCCESS;
+
 export interface CategoryUpdateAction extends SentencesAction {
   name: string;
 }
@@ -44,5 +59,5 @@ export interface SentenceCreateSuccessAction extends SentencesAction {
 }
 export const isSentenceCreateSuccess = (action: Action): action is SentenceCreateSuccessAction => action.type === ActionType.SENTENCE_CREATE_SUCCESS;
 
-export type SentencesActions = CategoryUpdateAction | SentenceCreateAction |
+export type SentencesActions = CategoryFetchAction | CategoryUpdateAction | SentenceCreateAction |
   SentenceUpdateAction | SentenceDeleteAction | SentenceCreateSuccessAction;

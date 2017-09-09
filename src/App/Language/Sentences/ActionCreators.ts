@@ -1,8 +1,17 @@
 import {
-  ActionType, CategoryUpdateAction, SentenceCreateAction, SentenceCreateSuccessAction, SentenceDeleteAction,
+  ActionType, CategoryFetchAction, CategoryFetchSuccessAction, CategoryUpdateAction, SentenceCreateAction,
+  SentenceCreateSuccessAction,
+  SentenceDeleteAction,
   SentenceUpdateAction
 } from './Actions';
-import { SentenceResponse } from '../../../API/SentencesAPI';
+import { SentenceResponse } from '../../../API/Sentences/Responses';
+import { CategoryResponse } from '../../../API/Categories/Responses';
+
+export const createCategoryFetchAction = (categoryId: number): CategoryFetchAction => ({ type: ActionType.CATEGORY_FETCH, id: categoryId });
+
+export const createCategoryFetchSuccessAction = (category: CategoryResponse): CategoryFetchSuccessAction => {
+  return { type: ActionType.CATEGORY_FETCH_SUCCESS, category: { id: category.id, name: category.name }, sentences: category.sentences };
+};
 
 export const getCategoryUpdateAction = (name: string): CategoryUpdateAction => ({ type: ActionType.CATEGORY_UPDATE, name: name });
 

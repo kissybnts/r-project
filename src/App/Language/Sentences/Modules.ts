@@ -1,11 +1,12 @@
 import { Action } from 'redux';
 import { EntityState, UserRelationEntityState } from '../../Constant/CommonState';
 import {
+  isCategoryFetchSuccess,
   isCategoryUpdate, isSentenceCreateSuccess, isSentenceDelete,
   isSentenceUpdate
 } from './Actions';
 
-// State
+// States
 export interface SentenceState extends EntityState {
   original: string;
   translation: string;
@@ -16,11 +17,8 @@ export interface AddSentenceState {
   categoryId: number;
 }
 
-export interface CategoryState extends UserRelationEntityState {
+export interface CategoryDetailState extends UserRelationEntityState {
   name: string;
-}
-
-export interface CategoryDetailState extends CategoryState {
   sentences: SentenceState[];
 }
 
@@ -32,14 +30,17 @@ export const initialSentencesState: SentencesState = {
   category: {
     id: 2,
     userId: 3,
-    name: 'initial name',
+    name: '　',
     sentences: []
   }
 };
 
 // Reducer
 export default function reducer(state: SentencesState = initialSentencesState, action: Action): SentencesState {
-  if (isCategoryUpdate(action)) {
+  if (isCategoryFetchSuccess(action)) {
+    console.log('fetch success');
+    return { category: { id: action.category.id, userId: state.category.userId, name: action.category.name, sentences: action.sentences }};
+  } else if (isCategoryUpdate(action)) {
     return { category: { ...state.category, name: action.name, sentences: state.category.sentences }};
   } else if (isSentenceUpdate(action)) {
     let index = state.category.sentences.map((s) => { return s.id; }).indexOf(action.sentenceId);

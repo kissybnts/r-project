@@ -12,7 +12,7 @@ interface Props {
 export class Index extends React.Component<Props, {}> {
   render() {
     return (
-      <CategoryDetail value={this.props.state.category} dispatch={this.props.dispatch}/>
+      <CategoryDetail state={this.props.state.category} dispatch={this.props.dispatch}/>
     );
   }
 }

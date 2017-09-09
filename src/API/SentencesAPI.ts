@@ -1,21 +1,35 @@
-import axios, { AxiosInstance } from 'axios';
-import { APIConstant } from './Constant';
+import axios, { AxiosResponse } from 'axios';
+import { APIConstant, ErrorResponse } from './Constant';
+import { errorHandler } from './Handler';
 
-class SentencesAPI {
-  private axios: AxiosInstance;
-  constructor() {
-    this.axios = axios.create({
+export interface CreateSentenceRequest {
+  user_id: number;
+  category_id: number;
+  original: string;
+  translation: string;
+}
+
+export interface SentenceResponse {
+  id: number;
+  category_id: number;
+  original: string;
+  translation: string;
+}
+
+export interface APIResponses {
+  response: AxiosResponse;
+  error: ErrorResponse | null;
+}
+
+export class SentencesAPI {
+  createSentence(newSentence: CreateSentenceRequest) {
+    let request = axios.create({
       baseURL: APIConstant.URLS.SENTENCES,
       headers: APIConstant.AUTH_HEADER
     });
-  }
-
-  createSentence(userId: number, categoryId: number, original: string, translation: string) {
-    this.axios
-      .post('', { user_id: userId, category_id: categoryId, original: original, translation: translation })
-      .then(response => {
-        console.log(response.data);
-      });
+    return request.post('', newSentence)
+      .then(response => ({ response: response, error: null }))
+      .catch(error => ({ response: error, error: errorHandler(error)}));
   }
 }
 

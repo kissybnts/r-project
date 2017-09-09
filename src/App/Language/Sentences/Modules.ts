@@ -1,11 +1,19 @@
 import { Action } from 'redux';
 import { EntityState, UserRelationEntityState } from '../../Constant/CommonState';
-import { isCategoryUpdate, isSentenceCreate, isSentenceDelete, isSentenceUpdate } from './Actions';
+import {
+  isCategoryUpdate, isSentenceCreateSuccess, isSentenceDelete,
+  isSentenceUpdate
+} from './Actions';
 
 // State
 export interface SentenceState extends EntityState {
   original: string;
   translation: string;
+}
+
+export interface AddSentenceState {
+  userId: number;
+  categoryId: number;
 }
 
 export interface CategoryState extends UserRelationEntityState {
@@ -22,8 +30,8 @@ export interface SentencesState {
 
 export const initialSentencesState: SentencesState = {
   category: {
-    id: -1,
-    userId: -1,
+    id: 2,
+    userId: 3,
     name: 'initial name',
     sentences: []
   }
@@ -33,11 +41,6 @@ export const initialSentencesState: SentencesState = {
 export default function reducer(state: SentencesState = initialSentencesState, action: Action): SentencesState {
   if (isCategoryUpdate(action)) {
     return { category: { ...state.category, name: action.name, sentences: state.category.sentences }};
-  } else if (isSentenceCreate(action)) {
-    let sentenceId = state.category.sentences.length + 1;
-    let sentence: SentenceState = { id: sentenceId, original: action.original, translation: action.translation };
-    let sentences = state.category.sentences.concat(sentence);
-    return { category: { ...state.category, sentences: sentences }};
   } else if (isSentenceUpdate(action)) {
     let index = state.category.sentences.map((s) => { return s.id; }).indexOf(action.sentenceId);
     let target = state.category.sentences[index];
@@ -49,7 +52,10 @@ export default function reducer(state: SentencesState = initialSentencesState, a
     let index = state.category.sentences.map((s) => { return s.id; }).indexOf(action.sentenceId);
     let sentences = state.category.sentences.slice(0, index).concat(state.category.sentences.slice(index + 1, state.category.sentences.length));
     return { category: { ...state.category, sentences: sentences }};
-  } else {
-    return state;
+  } else if (isSentenceCreateSuccess(action)) {
+    let sentence: SentenceState = { id: action.sentenceId, original: action.original, translation: action.translation };
+    let sentences = state.category.sentences.concat(sentence);
+    return { category: { ...state.category, sentences: sentences }};
   }
+  return state;
 }

@@ -6,7 +6,7 @@ import { CategoryDetailState } from '../Modules';
 import { AddSentence } from './AddSentence';
 
 interface Props {
-  value: CategoryDetailState;
+  state: CategoryDetailState;
   dispatch: Dispatch<ReduxAction>;
 }
 
@@ -14,9 +14,9 @@ export class CategoryDetail extends React.Component<Props, {}> {
   render() {
     return (
       <div>
-        <h2>{this.props.value.name}</h2>
-        <AddSentence dispatch={this.props.dispatch}/>
-        <SentenceList value={this.props.value.sentences}/>
+        <h2>{this.props.state.name}</h2>
+        <AddSentence state={({userId: this.props.state.userId, categoryId: this.props.state.id})} dispatch={this.props.dispatch}/>
+        <SentenceList state={this.props.state.sentences}/>
       </div>
     );
   }

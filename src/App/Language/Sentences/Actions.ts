@@ -4,7 +4,9 @@ export enum ActionType {
   CATEGORY_UPDATE = 'category/update',
   SENTENCE_CREATE = 'sentence/create',
   SENTENCE_UPDATE = 'sentence/update',
-  SENTENCE_DELETE = 'sentence/delete'
+  SENTENCE_DELETE = 'sentence/delete',
+  SENTENCE_CREATE_SUCCESS = 'sentence/create/success',
+  SENTENCE_CREATE_FAILURE = 'sentence/create/failure'
 }
 
 interface SentencesAction extends Action {
@@ -16,6 +18,8 @@ export interface CategoryUpdateAction extends SentencesAction {
 export const isCategoryUpdate = (action: Action): action is CategoryUpdateAction => action.type === ActionType.CATEGORY_UPDATE;
 
 export interface SentenceCreateAction extends SentencesAction {
+  userId: number;
+  categoryId: number;
   original: string;
   translation: string;
 }
@@ -33,4 +37,12 @@ export interface SentenceDeleteAction extends SentencesAction {
 }
 export const isSentenceDelete = (action: Action): action is SentenceDeleteAction => action.type === ActionType.SENTENCE_DELETE;
 
-export type SentencesActions = CategoryUpdateAction | SentenceCreateAction | SentenceUpdateAction | SentenceDeleteAction;
+export interface SentenceCreateSuccessAction extends SentencesAction {
+  sentenceId: number;
+  original: string;
+  translation: string;
+}
+export const isSentenceCreateSuccess = (action: Action): action is SentenceCreateSuccessAction => action.type === ActionType.SENTENCE_CREATE_SUCCESS;
+
+export type SentencesActions = CategoryUpdateAction | SentenceCreateAction |
+  SentenceUpdateAction | SentenceDeleteAction | SentenceCreateSuccessAction;

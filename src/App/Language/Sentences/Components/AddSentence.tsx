@@ -2,23 +2,19 @@ import * as React from 'react';
 import { getSentenceCreateAction } from '../ActionCreators';
 import { ReduxAction } from '../../../../Redux/ConfigureStores';
 import { Dispatch } from 'redux';
-import { sentencesApi } from '../../../../API/SentencesAPI';
+import { AddSentenceState } from '../Modules';
 
 interface Props {
+  state: AddSentenceState;
   dispatch: Dispatch<ReduxAction>;
 }
-
-const AddSentenceActionCreators = {
-  create: getSentenceCreateAction
-};
 
 export class AddSentence extends React.Component<Props, {}> {
   private original: HTMLInputElement;
   private translation: HTMLInputElement;
 
   createSentence() {
-    this.props.dispatch(AddSentenceActionCreators.create(this.original.value, this.translation.value));
-    sentencesApi.createSentence(1, 1, this.original.value, this.translation.value);
+    this.props.dispatch(getSentenceCreateAction(this.props.state.userId, this.props.state.categoryId, this.original.value, this.translation.value));
     this.original.value = '';
     this.translation.value = '';
   }

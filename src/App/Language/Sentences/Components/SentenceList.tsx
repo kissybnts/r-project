@@ -3,15 +3,15 @@ import { Sentence } from './Sentence';
 import { SentenceState } from '../Modules';
 
 interface Props {
-  value: SentenceState[];
+  state: SentenceState[];
 }
 
 export class SentenceList extends React.Component<Props, {}> {
   render() {
     return (
       <div>
-        {this.props.value.map((sentence) => (
-          <Sentence key={sentence.id} value={sentence}/>
+        {this.props.state.map((sentence) => (
+          <Sentence key={sentence.id} state={sentence}/>
         ))}
       </div>
     );

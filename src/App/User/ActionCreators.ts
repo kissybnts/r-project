@@ -1,17 +1,20 @@
 import {
-  ActionType, LoginRequestAction, LoginSuccessAction, SignUpRequestAction,
+  ActionType, AuthSaveAction, LoginRequestAction, LoginSuccessAction, OperationType, SignUpRequestAction,
   SignUpSuccessAction
 } from './Actions';
-import { AuthResponse } from '../../../API/Auth/Responses';
+import { AuthResponse } from '../../API/User/Responses';
 
 export const createLoginRequestAction = (email: string, password: string): LoginRequestAction =>
   ({ type: ActionType.LoginRequest, email: email, password: password });
 
-export const createLoginSuccessAction = (response: AuthResponse): LoginSuccessAction => 
-  ({ type: ActionType.LoginSuccess, user: response.user, token: response.token });
+export const createLoginSuccessAction = (name: string, email: string): LoginSuccessAction =>
+  ({ type: ActionType.LoginSuccess, user: { name: name, email: email } });
 
 export const createSignUpRequestAction = (name: string, email: string, password: string): SignUpRequestAction =>
   ({ type: ActionType.SignUpRequest, name: name, email: email, password: password });
 
-export const createSignUpSuccessAction = (response: AuthResponse): SignUpSuccessAction =>
-  ({ type: ActionType.SignUpSuccess, user: response.user, token: response.token });
+export const createSignUpSuccessAction = (name: string, email: string): SignUpSuccessAction =>
+  ({ type: ActionType.SignUpSuccess, user: { name: name, email: email } });
+
+export const createAuthSaveAction = (response: AuthResponse, operationType: OperationType): AuthSaveAction =>
+  ({ type: ActionType.AuthSave, user: response.user, token: response.token, operationType: operationType });

@@ -1,15 +1,19 @@
-import { Action } from "redux";
-import { isLoginSuccess } from "./Actions";
+import { Action } from 'redux';
+import { isLoginSuccess, isSignUpSuccessAction } from './Actions';
 
-export interface AuthState {
-  user: { id: number, name: string, email: string };
-  token: string;
+export interface UserState {
+  user: { name: string, email: string };
+  isLoggedIn: boolean;
 }
 
-const initialState: AuthState = { user: { id: -1, name: '', email: '' }, token: '' };
+const initialState: UserState = { user: { name: '', email: '' }, isLoggedIn: false };
 
-export default function reducer(state: AuthState = initialState, action: Action): AuthState {
+export default function reducer(state: UserState = initialState, action: Action): UserState {
   if (isLoginSuccess(action)) {
-    return { user: action.user, token: action.token };
+    return { user: action.user, isLoggedIn: true };
+  } else if (isSignUpSuccessAction(action)) {
+    return { user: action.user, isLoggedIn: true };
   }
+
+  return state;
 }

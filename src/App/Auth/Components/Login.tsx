@@ -25,8 +25,6 @@ export class Login extends React.Component<Props, CompontentState> {
   }
 
   handleOnChange(e: React.FormEvent<HTMLInputElement>) {
-    console.log(e.currentTarget.name);
-    console.log(e.currentTarget.value);
     this.setState({ ...this.state, [e.currentTarget.name]: e.currentTarget.value });
   }
 

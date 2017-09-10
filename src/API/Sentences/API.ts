@@ -6,7 +6,7 @@ import { CreateSentenceRequest } from './Requests';
 export namespace SentencesAPI {
   const request = axios.create({
     baseURL: APIConstant.URLS.SENTENCES,
-    headers: APIConstant.REQUEST_HEADER
+    headers: APIConstant.REQUEST_HEADER()
   });
 
   export const createSentence = (newSentence: CreateSentenceRequest): Promise<APIResponses> => {

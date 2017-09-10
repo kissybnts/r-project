@@ -5,7 +5,7 @@ import { errorHandler } from '../Handler';
 export namespace CategoriesAPI {
   const request = axios.create({
     baseURL: APIConstant.URLS.CATEGORIES,
-    headers: APIConstant.REQUEST_HEADER
+    headers: APIConstant.REQUEST_HEADER()
   });
 
   export const fetchCategory = (categoryId: number): Promise<APIResponses> => {

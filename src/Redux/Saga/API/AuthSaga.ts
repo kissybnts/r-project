@@ -2,7 +2,7 @@ import {
   AuthSaveAction, isAuthSaveAction,
   isLoginRequest, isSignUpRequestAction, LoginRequestAction, OperationType,
   SignUpRequestAction
-} from '../../../App/User/Actions';
+} from '../../../App/Auth/Actions';
 import { call, put, take } from 'redux-saga/effects';
 import { LoginRequest, SignUpRequest } from '../../../API/User/Requests';
 import { APIResponses } from '../../../API/Common';
@@ -10,7 +10,7 @@ import { AuthAPI } from '../../../API/User/AuthAPI';
 import {
   createAuthSaveAction, createLoginSuccessAction,
   createSignUpSuccessAction
-} from '../../../App/User/ActionCreators';
+} from '../../../App/Auth/ActionCreators';
 import { AuthResponse } from '../../../API/User/Responses';
 
 export function* handleLoginRequestAction() {

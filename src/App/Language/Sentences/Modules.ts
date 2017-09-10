@@ -28,8 +28,8 @@ export interface SentencesState {
 
 export const initialSentencesState: SentencesState = {
   category: {
-    id: 2,
-    userId: 3,
+    id: 1,
+    userId: 1,
     name: '　',
     sentences: []
   }
@@ -38,7 +38,6 @@ export const initialSentencesState: SentencesState = {
 // Reducer
 export default function reducer(state: SentencesState = initialSentencesState, action: Action): SentencesState {
   if (isCategoryFetchSuccess(action)) {
-    console.log('fetch success');
     return { category: { id: action.category.id, userId: state.category.userId, name: action.category.name, sentences: action.sentences }};
   } else if (isCategoryUpdate(action)) {
     return { category: { ...state.category, name: action.name, sentences: state.category.sentences }};

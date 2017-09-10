@@ -1,9 +1,9 @@
 import { call, put, take } from 'redux-saga/effects';
-import { SentencesAPI } from '../../API/Sentences/API';
-import { isSentenceCreate, SentenceCreateAction } from '../../App/Language/Sentences/Actions';
-import { getSentenceCreateSuccessAction } from '../../App/Language/Sentences/ActionCreators';
-import { APIResponses } from '../../API/Common';
-import { SentenceResponse } from '../../API/Sentences/Responses';
+import { SentencesAPI } from '../../../API/Sentences/API';
+import { isSentenceCreate, SentenceCreateAction } from '../../../App/Language/Sentences/Actions';
+import { getSentenceCreateSuccessAction } from '../../../App/Language/Sentences/ActionCreators';
+import { APIResponses } from '../../../API/Common';
+import { SentenceResponse } from '../../../API/Sentences/Responses';
 
 export function* handleCreateSentence() {
   while (true) {

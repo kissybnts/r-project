@@ -7,12 +7,12 @@ interface Props {
   dispatch: Dispatch<ReduxAction>;
 }
 
-interface CompontentState {
+interface ComponentState {
   email: string;
   password: string;
 }
 
-export class Login extends React.Component<Props, CompontentState> {
+export class Login extends React.Component<Props, ComponentState> {
   constructor(props: Props) {
     super(props);
     this.state = {

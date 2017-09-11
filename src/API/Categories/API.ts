@@ -1,21 +1,20 @@
-import axios from 'axios';
 import { APIConstant, APIResponses } from '../Common';
 import { errorHandler } from '../Handler';
+import { AxiosInstance } from 'axios';
 
 export namespace CategoriesAPI {
-  const request = axios.create({
-    baseURL: APIConstant.URLS.CATEGORIES,
-    headers: APIConstant.REQUEST_HEADER()
-  });
+  function getRequest(): AxiosInstance {
+    return APIConstant.getRequest(APIConstant.URLS.CATEGORIES);
+  }
 
   export const fetchCategories = (): Promise<APIResponses> => {
-    return request.get('')
+    return getRequest().get('')
       .then(response => ({ response: response, error: null }))
       .catch(error => ({ response: error, error: errorHandler(error)}));
   };
 
   export const fetchCategory = (categoryId: number): Promise<APIResponses> => {
-    return request.get(String(categoryId))
+    return getRequest().get(String(categoryId))
       .then(response => ({ response: response, error: null }))
       .catch(error => ({ response: error, error: errorHandler(error)}));
   };

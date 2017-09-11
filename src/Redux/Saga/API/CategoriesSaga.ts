@@ -3,7 +3,22 @@ import { call, put, take } from 'redux-saga/effects';
 import { APIResponses } from '../../../API/Common';
 import { CategoriesAPI } from '../../../API/Categories/API';
 import { createCategoryFetchSuccessAction } from '../../../App/Language/Sentences/ActionCreators';
-import { CategoryResponse } from '../../../API/Categories/Responses';
+import { CategoriesResponse, CategoryResponse } from '../../../API/Categories/Responses';
+import { isCategoriesFetchAction } from '../../../App/Language/Categories/Actions';
+import { createCategoriesFetchSuccessAction } from '../../../App/Language/Categories/ActionCreators';
+
+export function* handleFetchCategories() {
+  while (true) {
+    yield take(isCategoriesFetchAction);
+    const apiResponses: APIResponses = yield call(CategoriesAPI.fetchCategories);
+    if (!apiResponses.error) {
+      let response: CategoriesResponse = { categories: apiResponses.response.data};
+      yield put(createCategoriesFetchSuccessAction(response));
+    } else {
+      console.log(apiResponses.error);
+    }
+  }
+}
 
 export function* handleFetchCategory() {
   while (true) {
@@ -16,3 +31,4 @@ export function* handleFetchCategory() {
     }
   }
 }
+

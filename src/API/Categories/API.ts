@@ -8,6 +8,12 @@ export namespace CategoriesAPI {
     headers: APIConstant.REQUEST_HEADER()
   });
 
+  export const fetchCategories = (): Promise<APIResponses> => {
+    return request.get('')
+      .then(response => ({ response: response, error: null }))
+      .catch(error => ({ response: error, error: errorHandler(error)}));
+  };
+
   export const fetchCategory = (categoryId: number): Promise<APIResponses> => {
     return request.get(String(categoryId))
       .then(response => ({ response: response, error: null }))

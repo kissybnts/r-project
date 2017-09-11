@@ -28,4 +28,4 @@ export type ReduxState = {
   language: LanguageState
 };
 
-export type ReduxAction = LanguageActions | UserActions | Action;
+export type ReduxAction = UserActions | LanguageActions | Action;

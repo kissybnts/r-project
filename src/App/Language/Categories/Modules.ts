@@ -1,8 +1,9 @@
 import { Action } from 'redux';
-import { UserRelationEntityState } from '../../Constant/CommonState';
+import { EntityState } from '../../Constant/CommonState';
+import { isCategoriesFetchSuccessAction } from './Actions';
 
 // State
-export interface CategoryState extends UserRelationEntityState {
+export interface CategoryState extends EntityState {
   name: string;
 }
 
@@ -16,5 +17,8 @@ export const initialCategoriesState: CategoriesState = {
 
 // Reducer
 export default function reducer(state: CategoriesState = initialCategoriesState, action: Action): CategoriesState {
+  if (isCategoriesFetchSuccessAction(action)) {
+    return { categories: action.categories };
+  }
   return state;
 }

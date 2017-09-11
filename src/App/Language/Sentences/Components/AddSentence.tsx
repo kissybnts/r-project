@@ -9,23 +9,42 @@ interface Props {
   dispatch: Dispatch<ReduxAction>;
 }
 
-export class AddSentence extends React.Component<Props, {}> {
-  private original: HTMLInputElement;
-  private translation: HTMLInputElement;
+interface ComponentState {
+  original: string;
+  translation: string;
+}
 
-  createSentence() {
-    this.props.dispatch(createSentenceCreateAction(this.props.state.categoryId, this.original.value, this.translation.value));
-    this.original.value = '';
-    this.translation.value = '';
+export class AddSentence extends React.Component<Props, ComponentState> {
+  constructor(props: Props) {
+    super(props);
+    this.initComponentState();
+    this.handleOnChange = this.handleOnChange.bind(this);
+    this.handleOnClick = this.handleOnClick.bind(this);
   }
 
   render() {
     return (
       <div>
-        <input ref={(node) => { if (node) { this.original = node; } }}/>
-        <input ref={(node) => { if (node) { this.translation = node; } }}/>
-        <button onClick={() => this.createSentence()}>Add</button>
+        <input name="original" onChange={this.handleOnChange}/>
+        <input name="translation" onChange={this.handleOnChange}/>
+        <button onClick={this.handleOnClick}>Add</button>
       </div>
     );
+  }
+
+  private initComponentState() {
+    this.state = {
+      original: '',
+      translation: ''
+    };
+  }
+
+  private handleOnChange(e: React.FormEvent<HTMLInputElement>) {
+    this.setState({ ...this.state, [e.currentTarget.name]: e.currentTarget.value });
+  }
+
+  private handleOnClick() {
+    this.props.dispatch(createSentenceCreateAction(this.props.state.categoryId, this.state.original, this.state.translation));
+    this.initComponentState();
   }
 }

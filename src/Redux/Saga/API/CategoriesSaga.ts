@@ -1,4 +1,4 @@
-import { CategoryFetchAction, isCategoryFetch } from '../../../App/Language/Sentences/Actions';
+import { CategoryFetchAction, isCategoryFetchAction } from '../../../App/Language/Sentences/Actions';
 import { call, put, take } from 'redux-saga/effects';
 import { APIResponses } from '../../../API/Common';
 import { CategoriesAPI } from '../../../API/Categories/API';
@@ -22,7 +22,7 @@ export function* handleFetchCategories() {
 
 export function* handleFetchCategory() {
   while (true) {
-    const action: CategoryFetchAction = yield take(isCategoryFetch);
+    const action: CategoryFetchAction = yield take(isCategoryFetchAction);
     const apiResponses: APIResponses = yield call(CategoriesAPI.fetchCategory, action.id);
     if (!apiResponses.error) {
       yield put(createCategoryFetchSuccessAction(<CategoryResponse> apiResponses.response.data));

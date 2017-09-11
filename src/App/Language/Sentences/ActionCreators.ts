@@ -13,15 +13,15 @@ export const createCategoryFetchSuccessAction = (category: CategoryResponse): Ca
   return { type: ActionType.CATEGORY_FETCH_SUCCESS, category: { id: category.id, name: category.name }, sentences: category.sentences };
 };
 
-export const getCategoryUpdateAction = (name: string): CategoryUpdateAction => ({ type: ActionType.CATEGORY_UPDATE, name: name });
+export const createCategoryUpdateAction = (name: string): CategoryUpdateAction => ({ type: ActionType.CATEGORY_UPDATE, name: name });
 
-export const getSentenceCreateAction = (categoryId: number, original: string, translation: string): SentenceCreateAction =>
+export const createSentenceCreateAction = (categoryId: number, original: string, translation: string): SentenceCreateAction =>
   ({ type: ActionType.SENTENCE_CREATE, categoryId: categoryId,  original: original, translation: translation });
 
-export const getSentenceUpdateAction = (sentenceId: number, original: string, translation: string): SentenceUpdateAction =>
+export const createSentenceUpdateAction = (sentenceId: number, original: string, translation: string): SentenceUpdateAction =>
   ({ type: ActionType.SENTENCE_UPDATE, sentenceId: sentenceId, original: original, translation: translation });
 
-export const getSentenceDeleteAction = (sentenceId: number): SentenceDeleteAction => ({ type: ActionType.SENTENCE_DELETE, sentenceId: sentenceId });
+export const createSentenceDeleteAction = (sentenceId: number): SentenceDeleteAction => ({ type: ActionType.SENTENCE_DELETE, sentenceId: sentenceId });
 
-export const getSentenceCreateSuccessAction = (sentence: SentenceResponse): SentenceCreateSuccessAction => 
+export const createSentenceCreateSuccessAction = (sentence: SentenceResponse): SentenceCreateSuccessAction =>
   ({ type: ActionType.SENTENCE_CREATE_SUCCESS, sentenceId: sentence.id, original: sentence.original, translation: sentence.translation});

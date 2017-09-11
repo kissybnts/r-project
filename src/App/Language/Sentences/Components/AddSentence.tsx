@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { getSentenceCreateAction } from '../ActionCreators';
+import { createSentenceCreateAction } from '../ActionCreators';
 import { ReduxAction } from '../../../../Redux/ConfigureStores';
 import { Dispatch } from 'redux';
 import { AddSentenceState } from '../Modules';
@@ -14,7 +14,7 @@ export class AddSentence extends React.Component<Props, {}> {
   private translation: HTMLInputElement;
 
   createSentence() {
-    this.props.dispatch(getSentenceCreateAction(this.props.state.categoryId, this.original.value, this.translation.value));
+    this.props.dispatch(createSentenceCreateAction(this.props.state.categoryId, this.original.value, this.translation.value));
     this.original.value = '';
     this.translation.value = '';
   }

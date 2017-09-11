@@ -15,7 +15,7 @@ export class CategoryDetail extends React.Component<Props, {}> {
     return (
       <div>
         <h2>{this.props.state.name}</h2>
-        <AddSentence state={({userId: this.props.state.userId, categoryId: this.props.state.id})} dispatch={this.props.dispatch}/>
+        <AddSentence state={({categoryId: this.props.state.id})} dispatch={this.props.dispatch}/>
         <SentenceList state={this.props.state.sentences}/>
       </div>
     );

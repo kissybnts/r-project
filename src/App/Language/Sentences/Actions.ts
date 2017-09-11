@@ -33,7 +33,6 @@ export interface CategoryUpdateAction extends SentencesAction {
 export const isCategoryUpdate = (action: Action): action is CategoryUpdateAction => action.type === ActionType.CATEGORY_UPDATE;
 
 export interface SentenceCreateAction extends SentencesAction {
-  userId: number;
   categoryId: number;
   original: string;
   translation: string;

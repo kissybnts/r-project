@@ -8,7 +8,8 @@ import { SentenceResponse } from '../../../API/Sentences/Responses';
 export function* handleCreateSentence() {
   while (true) {
     const action: SentenceCreateAction = yield take(isSentenceCreate);
-    const sentenceRequest = { user_id: action.userId, category_id: action.categoryId, original: action.original, translation: action.translation };
+    let userId = Number(sessionStorage.getItem('user_id'));
+    const sentenceRequest = { user_id: userId, category_id: action.categoryId, original: action.original, translation: action.translation };
     const apiResponses: APIResponses = yield call(SentencesAPI.createSentence, sentenceRequest);
     if (!apiResponses.error) {
       yield put(getSentenceCreateSuccessAction(<SentenceResponse> apiResponses.response.data));

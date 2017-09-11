@@ -15,8 +15,8 @@ export const createCategoryFetchSuccessAction = (category: CategoryResponse): Ca
 
 export const getCategoryUpdateAction = (name: string): CategoryUpdateAction => ({ type: ActionType.CATEGORY_UPDATE, name: name });
 
-export const getSentenceCreateAction = (userId: number, categoryId: number, original: string, translation: string): SentenceCreateAction =>
-  ({ type: ActionType.SENTENCE_CREATE, userId: userId, categoryId: categoryId,  original: original, translation: translation });
+export const getSentenceCreateAction = (categoryId: number, original: string, translation: string): SentenceCreateAction =>
+  ({ type: ActionType.SENTENCE_CREATE, categoryId: categoryId,  original: original, translation: translation });
 
 export const getSentenceUpdateAction = (sentenceId: number, original: string, translation: string): SentenceUpdateAction =>
   ({ type: ActionType.SENTENCE_UPDATE, sentenceId: sentenceId, original: original, translation: translation });

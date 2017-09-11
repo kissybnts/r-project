@@ -14,7 +14,7 @@ export class AddSentence extends React.Component<Props, {}> {
   private translation: HTMLInputElement;
 
   createSentence() {
-    this.props.dispatch(getSentenceCreateAction(this.props.state.userId, this.props.state.categoryId, this.original.value, this.translation.value));
+    this.props.dispatch(getSentenceCreateAction(this.props.state.categoryId, this.original.value, this.translation.value));
     this.original.value = '';
     this.translation.value = '';
   }

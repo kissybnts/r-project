@@ -4,11 +4,12 @@ import { isSentenceCreateAction, SentenceCreateAction } from '../../../App/Langu
 import { createSentenceCreateSuccessAction } from '../../../App/Language/Sentences/ActionCreators';
 import { APIResponses } from '../../../API/Common';
 import { SentenceResponse } from '../../../API/Sentences/Responses';
+import { ConstantKey } from '../../../Constant/ConstantWord';
 
 export function* handleCreateSentence() {
   while (true) {
     const action: SentenceCreateAction = yield take(isSentenceCreateAction);
-    let userId = Number(sessionStorage.getItem('user_id'));
+    let userId = Number(sessionStorage.getItem(ConstantKey.USER_ID));
     const sentenceRequest = { user_id: userId, category_id: action.categoryId, original: action.original, translation: action.translation };
     const apiResponses: APIResponses = yield call(SentencesAPI.createSentence, sentenceRequest);
     if (!apiResponses.error) {

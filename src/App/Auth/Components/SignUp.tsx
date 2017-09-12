@@ -36,14 +36,6 @@ export class SignUp extends React.Component<Props, ComponentState> {
     );
   }
 
-  private initComponentState() {
-    this.state = {
-      name: '',
-      email: '',
-      password: ''
-    };
-  }
-
   handleOnChange(e: React.FormEvent<HTMLInputElement>) {
     this.setState({ ...this.state, [e.currentTarget.name]: e.currentTarget.value });
   }
@@ -51,5 +43,13 @@ export class SignUp extends React.Component<Props, ComponentState> {
   handleOnClick() {
     this.props.dispatch(createSignUpRequestAction(this.state.name, this.state.email, this.state.password));
     this.initComponentState();
+  }
+
+  private initComponentState() {
+    this.state = {
+      name: '',
+      email: '',
+      password: ''
+    };
   }
 }

@@ -1,5 +1,5 @@
 import { Action } from 'redux';
-import { EntityState } from '../../Constant/CommonState';
+import { EntityState } from '../../Common/CommonState';
 import { isCategoriesFetchSuccessAction } from './Actions';
 
 // State

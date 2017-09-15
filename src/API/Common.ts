@@ -1,4 +1,5 @@
 import axios, { AxiosInstance, AxiosResponse } from 'axios';
+import { ConstantKey } from '../Constant/ConstantWord';
 
 export namespace APIConstant {
   const BASE_URL = 'http://localhost:8080/v1';
@@ -11,7 +12,7 @@ export namespace APIConstant {
   };
 
   export function REQUEST_HEADER() {
-    const token = sessionStorage.getItem('token');
+    const token = sessionStorage.getItem(ConstantKey.TOKEN);
     return ({'Authorization': `Bearer ${token}`});
   }
 

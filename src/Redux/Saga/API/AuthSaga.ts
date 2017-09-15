@@ -12,6 +12,7 @@ import {
   createSignUpSuccessAction
 } from '../../../App/Auth/ActionCreators';
 import { AuthResponse } from '../../../API/User/Responses';
+import { ConstantKey } from '../../../Constant/ConstantWord';
 
 export function* handleLoginRequestAction() {
   while (true) {
@@ -43,8 +44,8 @@ export function* handleAuthSaveAction() {
   while (true) {
     const action: AuthSaveAction = yield take(isAuthSaveAction);
     
-    sessionStorage.setItem('user_id', String(action.user.id));
-    sessionStorage.setItem('token', action.token);
+    sessionStorage.setItem(ConstantKey.USER_ID, String(action.user.id));
+    sessionStorage.setItem(ConstantKey.TOKEN, action.token);
     
     switch (action.operationType) {
       case OperationType.Login:

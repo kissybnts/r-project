@@ -3,7 +3,7 @@ import { SentencesState } from './Modules';
 import { Dispatch } from 'redux';
 import { ReduxAction } from '../../../Redux/ConfigureStores';
 import { CategoryDetail } from './Components/CategoryDetail';
-import { createCategoryFetchAction } from './ActionCreators';
+import { createCategoryFetchRequestAction } from './ActionCreators';
 
 interface Props {
   state: SentencesState;
@@ -13,7 +13,7 @@ interface Props {
 export class Index extends React.Component<Props, {}> {
   constructor(props: Props) {
     super(props);
-    this.props.dispatch(createCategoryFetchAction(this.props.state.category.id));
+    this.props.dispatch(createCategoryFetchRequestAction(this.props.state.category.id));
   }
 
   render() {

@@ -1,62 +1,62 @@
 import { Action } from 'redux';
 
 export enum ActionType {
-  CATEGORY_FETCH = 'category/fetch',
-  CATEGORY_FETCH_SUCCESS = 'category/fetch/success',
-  CATEGORY_FETCH_FAILURE = 'category/fetch/failure',
-  CATEGORY_UPDATE = 'category/update',
-  SENTENCE_CREATE = 'sentence/create',
-  SENTENCE_UPDATE = 'sentence/update',
-  SENTENCE_DELETE = 'sentence/delete',
-  SENTENCE_CREATE_SUCCESS = 'sentence/create/success',
-  SENTENCE_CREATE_FAILURE = 'sentence/create/failure'
+  CategoryFetchRequest = 'category/fetch',
+  CategoryFetchRequestSuccess = 'category/fetch/success',
+  CategoryFetchRequestFailure = 'category/fetch/failure',
+  CategoryUpdateRequest = 'category/update',
+  SentenceCreateRequest = 'sentence/create',
+  SentenceCreateRequestSuccess = 'sentence/create/success',
+  SentenceCreateRequestFailure = 'sentence/create/failure',
+  SentenceUpdateRequest = 'sentence/update',
+  SentenceDeleteRequest = 'sentence/delete'
 }
 
 interface SentencesAction extends Action {
   type: ActionType;
 }
 
-export interface CategoryFetchAction extends SentencesAction {
+export interface CategoryFetchRequestAction extends SentencesAction {
   id: number;
 }
-export const isCategoryFetchAction = (action: Action): action is CategoryFetchAction => action.type === ActionType.CATEGORY_FETCH;
+export const isCategoryFetchRequestAction = (action: Action): action is CategoryFetchRequestAction => action.type === ActionType.CategoryFetchRequest;
 
-export interface CategoryFetchSuccessAction extends SentencesAction {
+export interface CategoryFetchRequestSuccessAction extends SentencesAction {
   category: { id: number, name: string };
   sentences: { id: number, original: string, translation: string }[];
 }
-export const isCategoryFetchSuccessAction = (action: Action): action is CategoryFetchSuccessAction => action.type === ActionType.CATEGORY_FETCH_SUCCESS;
+export const isCategoryFetchRequestSuccessAction = (action: Action): action is CategoryFetchRequestSuccessAction => action.type === ActionType.CategoryFetchRequestSuccess;
 
-export interface CategoryUpdateAction extends SentencesAction {
+export interface CategoryUpdateRequestAction extends SentencesAction {
   name: string;
 }
-export const isCategoryUpdateAction = (action: Action): action is CategoryUpdateAction => action.type === ActionType.CATEGORY_UPDATE;
+export const isCategoryUpdateRequestAction = (action: Action): action is CategoryUpdateRequestAction => action.type === ActionType.CategoryUpdateRequest;
 
-export interface SentenceCreateAction extends SentencesAction {
+export interface SentenceCreateRequestAction extends SentencesAction {
   categoryId: number;
   original: string;
   translation: string;
 }
-export const isSentenceCreateAction = (action: Action): action is SentenceCreateAction => action.type === ActionType.SENTENCE_CREATE;
+export const isSentenceCreateRequestAction = (action: Action): action is SentenceCreateRequestAction => action.type === ActionType.SentenceCreateRequest;
 
-export interface SentenceUpdateAction extends SentencesAction {
+export interface SentenceUpdateRequestAction extends SentencesAction {
   sentenceId: number;
   original: string;
   translation: string;
 }
-export const isSentenceUpdateAction = (action: Action): action is SentenceUpdateAction => action.type === ActionType.SENTENCE_UPDATE;
+export const isSentenceUpdateRequestAction = (action: Action): action is SentenceUpdateRequestAction => action.type === ActionType.SentenceUpdateRequest;
 
-export interface SentenceDeleteAction extends SentencesAction {
+export interface SentenceDeleteRequestAction extends SentencesAction {
   sentenceId: number;
 }
-export const isSentenceDeleteAction = (action: Action): action is SentenceDeleteAction => action.type === ActionType.SENTENCE_DELETE;
+export const isSentenceDeleteRequestAction = (action: Action): action is SentenceDeleteRequestAction => action.type === ActionType.SentenceDeleteRequest;
 
-export interface SentenceCreateSuccessAction extends SentencesAction {
+export interface SentenceCreateRequestSuccessAction extends SentencesAction {
   sentenceId: number;
   original: string;
   translation: string;
 }
-export const isSentenceCreateSuccessAction = (action: Action): action is SentenceCreateSuccessAction => action.type === ActionType.SENTENCE_CREATE_SUCCESS;
+export const isSentenceCreateRequestSuccessAction = (action: Action): action is SentenceCreateRequestSuccessAction => action.type === ActionType.SentenceCreateRequestSuccess;
 
-export type SentencesActions = CategoryFetchAction | CategoryUpdateAction | SentenceCreateAction |
-  SentenceUpdateAction | SentenceDeleteAction | SentenceCreateSuccessAction;
+export type SentencesActions = CategoryFetchRequestAction | CategoryUpdateRequestAction | SentenceCreateRequestAction |
+  SentenceUpdateRequestAction | SentenceDeleteRequestAction | SentenceCreateRequestSuccessAction;

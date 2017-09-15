@@ -1,9 +1,9 @@
 import { Action } from 'redux';
 import { EntityState } from '../../Common/CommonState';
 import {
-  isCategoryFetchSuccessAction,
-  isCategoryUpdateAction, isSentenceCreateSuccessAction, isSentenceDeleteAction,
-  isSentenceUpdateAction
+  isCategoryFetchRequestSuccessAction,
+  isCategoryUpdateRequestAction, isSentenceCreateRequestSuccessAction, isSentenceDeleteRequestAction,
+  isSentenceUpdateRequestAction
 } from './Actions';
 
 // States
@@ -35,22 +35,22 @@ export const initialSentencesState: SentencesState = {
 
 // Reducer
 export default function reducer(state: SentencesState = initialSentencesState, action: Action): SentencesState {
-  if (isCategoryFetchSuccessAction(action)) {
+  if (isCategoryFetchRequestSuccessAction(action)) {
     return { category: { id: action.category.id, name: action.category.name, sentences: action.sentences }};
-  } else if (isCategoryUpdateAction(action)) {
+  } else if (isCategoryUpdateRequestAction(action)) {
     return { category: { ...state.category, name: action.name, sentences: state.category.sentences }};
-  } else if (isSentenceUpdateAction(action)) {
+  } else if (isSentenceUpdateRequestAction(action)) {
     let index = state.category.sentences.map((s) => { return s.id; }).indexOf(action.sentenceId);
     let target = state.category.sentences[index];
     let sentence: SentenceState = { ...target, original: action.original, translation: action.translation };
     let sentences = state.category.sentences.slice(0, index);
     sentences.push(sentence, ...state.category.sentences.slice(index + 1, state.category.sentences.length));
     return { category: { ...state.category, sentences: sentences }};
-  } else if (isSentenceDeleteAction(action)) {
+  } else if (isSentenceDeleteRequestAction(action)) {
     let index = state.category.sentences.map((s) => { return s.id; }).indexOf(action.sentenceId);
     let sentences = state.category.sentences.slice(0, index).concat(state.category.sentences.slice(index + 1, state.category.sentences.length));
     return { category: { ...state.category, sentences: sentences }};
-  } else if (isSentenceCreateSuccessAction(action)) {
+  } else if (isSentenceCreateRequestSuccessAction(action)) {
     let sentence: SentenceState = { id: action.sentenceId, original: action.original, translation: action.translation };
     let sentences = state.category.sentences.concat(sentence);
     return { category: { ...state.category, sentences: sentences }};

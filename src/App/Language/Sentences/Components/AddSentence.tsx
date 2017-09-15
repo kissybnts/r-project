@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { createSentenceCreateAction } from '../ActionCreators';
+import { createSentenceCreateRequestAction } from '../ActionCreators';
 import { ReduxAction } from '../../../../Redux/ConfigureStores';
 import { Dispatch } from 'redux';
 import { AddSentenceState } from '../Modules';
@@ -44,7 +44,7 @@ export class AddSentence extends React.Component<Props, ComponentState> {
   }
 
   private handleOnClick() {
-    this.props.dispatch(createSentenceCreateAction(this.props.state.categoryId, this.state.original, this.state.translation));
+    this.props.dispatch(createSentenceCreateRequestAction(this.props.state.categoryId, this.state.original, this.state.translation));
     this.initComponentState();
   }
 }

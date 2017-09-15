@@ -7,5 +7,10 @@ export interface CategoriesResponse {
 export interface CategoryResponse {
   id: number;
   name: string;
+}
+
+export interface CategoryDetailResponse {
+  id: number;
+  name: string;
   sentences: SentenceResponse[];
 }

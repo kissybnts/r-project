@@ -5,11 +5,11 @@ import {
   SentenceUpdateAction
 } from './Actions';
 import { SentenceResponse } from '../../../API/Sentences/Responses';
-import { CategoryResponse } from '../../../API/Categories/Responses';
+import { CategoryDetailResponse } from '../../../API/Categories/Responses';
 
 export const createCategoryFetchAction = (categoryId: number): CategoryFetchAction => ({ type: ActionType.CATEGORY_FETCH, id: categoryId });
 
-export const createCategoryFetchSuccessAction = (category: CategoryResponse): CategoryFetchSuccessAction => {
+export const createCategoryFetchSuccessAction = (category: CategoryDetailResponse): CategoryFetchSuccessAction => {
   return { type: ActionType.CATEGORY_FETCH_SUCCESS, category: { id: category.id, name: category.name }, sentences: category.sentences };
 };
 

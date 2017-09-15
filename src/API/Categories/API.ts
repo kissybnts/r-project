@@ -1,6 +1,7 @@
 import { APIConstant, APIResponses } from '../Common';
 import { errorHandler } from '../Handler';
 import { AxiosInstance } from 'axios';
+import { CreateCategoryRequest } from './Requests';
 
 export namespace CategoriesAPI {
   function getRequest(): AxiosInstance {
@@ -18,4 +19,10 @@ export namespace CategoriesAPI {
       .then(response => ({ response: response, error: null }))
       .catch(error => ({ response: error, error: errorHandler(error)}));
   };
+
+  export const createCategory = (request: CreateCategoryRequest): Promise<APIResponses> => {
+    return getRequest().post('')
+      .then(response => ({ response: response, error: null }))
+      .catch(error => ({ response: error, error: errorHandler(error)}));
+  }
 }

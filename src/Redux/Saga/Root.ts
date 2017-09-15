@@ -1,6 +1,6 @@
 import { fork } from 'redux-saga/effects';
 import { handleCreateSentence } from './API/SentencesSaga';
-import { handleFetchCategories, handleFetchCategory } from './API/CategoriesSaga';
+import { handleCreateCategory, handleFetchCategories, handleFetchCategory } from './API/CategoriesSaga';
 import { handleAuthSaveAction, handleLoginRequestAction, handleSignUpRequestAction } from './API/AuthSaga';
 
 export default function* rootSaga() {
@@ -10,4 +10,5 @@ export default function* rootSaga() {
   yield fork(handleSignUpRequestAction);
   yield fork(handleAuthSaveAction);
   yield fork(handleFetchCategories);
+  yield fork(handleCreateCategory)
 }

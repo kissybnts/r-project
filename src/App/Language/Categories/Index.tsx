@@ -18,7 +18,7 @@ export class Index extends React.Component<Props, {}> {
   
   render() {
     return (
-      <CategoryList state={this.props.state} />
+      <CategoryList state={this.props.state} dispatch={this.props.dispatch} />
     );
   }
 }

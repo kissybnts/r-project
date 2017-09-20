@@ -7,7 +7,7 @@ import { LanguageActions } from '../App/Language/Modules';
 import createSagaMiddleware from 'redux-saga';
 import rootSaga from '../Redux/Saga/Root';
 import { UserActions } from '../App/Auth/Actions';
-import { routerReducer, routerMiddleware } from 'react-router-redux';
+import { routerReducer, routerMiddleware, RouterState } from 'react-router-redux';
 import createHistory from 'history/createBrowserHistory';
 
 const sagaMiddleware = createSagaMiddleware();
@@ -31,7 +31,8 @@ sagaMiddleware.run(rootSaga);
 
 export type ReduxState = {
   user: UserState,
-  language: LanguageState
+  language: LanguageState,
+  router: RouterState
 };
 
 export type ReduxAction = UserActions | LanguageActions | Action;
